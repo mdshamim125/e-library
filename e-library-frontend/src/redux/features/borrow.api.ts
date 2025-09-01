@@ -1,44 +1,46 @@
 // borrow.api.ts
-import { api } from "../api/apiSlice";
+import type { BorrowStatus, IBorrow } from "@/type";
+import { baseApi } from "../baseApi";
 
-export const borrowApi = api.injectEndpoints({
+export const borrowApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    //  Create a new borrow record
-    createBorrow: builder.mutation({
+    // Create a new borrow record
+    createBorrow: builder.mutation<IBorrow, Partial<IBorrow>>({
       query: (data) => ({
-        url: "/create",
+        url: "/borrow/create-borrow",
         method: "POST",
-        body: data,
+        data,
       }),
       invalidatesTags: ["Borrow"],
     }),
 
-    //  Get all borrow records
+    // Get all borrow records (admin)
     getAllBorrowingHistory: builder.query({
-      query: (params: Record<string, string>) => ({
-        url: "/all-borrow",
+      query: () => ({
+        url: "/borrow/all-borrows",
         method: "GET",
-        params,
       }),
       providesTags: ["Borrow"],
     }),
 
-    //  Update borrow status
-    updateBorrowStatus: builder.mutation({
+    // Update borrow status
+    updateBorrowStatus: builder.mutation<
+      IBorrow,
+      { borrowId: string; status: BorrowStatus }
+    >({
       query: ({ borrowId, status }) => ({
-        url: `/${borrowId}/status`,
+        url: `/borrow/${borrowId}/status`,
         method: "PATCH",
-        body: { status },
+        data: { status },
       }),
       invalidatesTags: ["Borrow"],
     }),
 
-    //  Get borrowed books by user (with params like `userId`)
+    // Get borrowed books by user
     getUserBorrowedBooks: builder.query({
-      query: (params: Record<string, string>) => ({
-        url: "/user",
+      query: () => ({
+        url: "/borrow/my-borrows",
         method: "GET",
-        params,
       }),
       providesTags: ["Borrow"],
     }),

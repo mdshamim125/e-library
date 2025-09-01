@@ -20,6 +20,9 @@ import {
 } from "@/components/ui/pagination";
 import { useGetAllBooksQuery } from "@/redux/features/book/book.api";
 import { Filter } from "lucide-react";
+import BorrowModal from "@/components/ui/BorrowModal";
+import { useCreateBorrowMutation } from "@/redux/features/borrow.api";
+import { toast } from "sonner";
 
 interface Book {
   _id: string;
@@ -39,6 +42,7 @@ export default function AllBooks() {
   const [limit] = useState(9);
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [search, setSearch] = useState("");
+  const [createBorrow] = useCreateBorrowMutation();
 
   const { control, handleSubmit } = useForm<FilterForm>({
     defaultValues: { category: "All" },
@@ -153,14 +157,24 @@ export default function AllBooks() {
                   >
                     View Details
                   </Button>
-                  <Button
-                    size="sm"
-                    className="bg-green-600 hover:bg-green-700 text-white"
-                    onClick={() => console.log("Borrow", book._id)}
-                    disabled={book.copiesAvailable === 0}
-                  >
-                    {book.copiesAvailable > 0 ? "Borrow" : "Unavailable"}
-                  </Button>
+                  <BorrowModal
+                    bookTitle={book.title}
+                    onBorrow={async ({ quantity, returnDate }) => {
+                      try {
+                        const res = await createBorrow({
+                          bookId: book._id,
+                          quantity,
+                          dueDate: returnDate,
+                        }).unwrap();
+
+                        console.log("Borrow created:", res);
+                        toast.success("Borrow successful!");
+                      } catch (error: any) {
+                        console.error("Error borrowing book:", error);
+                        toast.error(error?.data?.message);
+                      }
+                    }}
+                  />
                 </div>
               </div>
             </div>

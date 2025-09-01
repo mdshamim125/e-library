@@ -1,3 +1,4 @@
+import AllBorrowedBooks from "@/components/ui/AllBorrowedBooks";
 import { AddBook } from "@/pages/admin/AddBook";
 import AdminOverview from "@/pages/admin/AdminOverview";
 import ViewBooks from "@/pages/admin/ViewBooks";
@@ -25,6 +26,11 @@ export const adminSidebarItems: ISidebarItem[] = [
         title: "View Books",
         url: "/admin/all-books",
         component: ViewBooks,
+      },
+      {
+        title: "View Borrowed Books",
+        url: "/admin/borrowed-books",
+        component: AllBorrowedBooks,
       },
     ],
   },
