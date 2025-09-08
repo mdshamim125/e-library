@@ -32,6 +32,17 @@ export interface IBorrow {
   updatedAt?: string; // ISO date string, optional
 }
 
+
+export type TUser = {
+  _id: string;
+  name: string;
+  email: string;
+  role: "USER" | "ADMIN" | "SUPER_ADMIN" | string;
+  isActive: "ACTIVE" | "BLOCKED" | string;
+  isVerified?: boolean;
+};
+
+
 // Define the type for borrowed book
 // export interface BorrowedBook {
 //   data: {

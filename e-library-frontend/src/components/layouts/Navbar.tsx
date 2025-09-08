@@ -18,11 +18,12 @@ import UserMenu from "../user-menu";
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
   { href: "/", label: "Home" },
-  { href: "about", label: "About" },
   {
     href: "books",
     label: "All Books",
   },
+  { href: "about", label: "About" },
+  { href: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {

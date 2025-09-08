@@ -1,17 +1,18 @@
 import AllBorrowedBooks from "@/components/ui/AllBorrowedBooks";
 import { AddBook } from "@/pages/admin/AddBook";
-import AdminOverview from "@/pages/admin/AdminOverview";
+// import AdminOverview from "@/pages/admin/AdminOverview";
+import ManageUsers from "@/pages/admin/ManageUsers";
 import ViewBooks from "@/pages/admin/ViewBooks";
 import type { ISidebarItem } from "@/type";
 export const adminSidebarItems: ISidebarItem[] = [
   {
     title: "Admin Dashboard",
     items: [
-      {
-        title: "overview",
-        url: "/admin/overview",
-        component: AdminOverview,
-      },
+      // {
+      //   title: "overview",
+      //   url: "/admin/overview",
+      //   component: AdminOverview,
+      // },
     ],
   },
   {
@@ -34,14 +35,14 @@ export const adminSidebarItems: ISidebarItem[] = [
       },
     ],
   },
-  // {
-  //   title: "User Management",
-  //   items: [
-  //     {
-  //       title: "Manage Users",
-  //       url: "/admin/manage-users",
-  //       component: ManageUsers,
-  //     },
-  //   ],
-  // },
+  {
+    title: "User Management",
+    items: [
+      {
+        title: "Manage Users",
+        url: "/admin/manage-users",
+        component: ManageUsers,
+      },
+    ],
+  },
 ];

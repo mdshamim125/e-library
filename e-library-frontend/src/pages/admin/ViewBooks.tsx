@@ -40,6 +40,7 @@ import {
 // ✅ import icons
 import { Filter, Edit, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 interface FilterForm {
   category: string;
@@ -52,6 +53,7 @@ export default function ViewBooks() {
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [search, setSearch] = useState("");
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const { control, handleSubmit } = useForm<FilterForm>({
     defaultValues: {
@@ -213,7 +215,7 @@ export default function ViewBooks() {
                   <td className="border p-2">
                     {/* Edit Icon */}
                     <button
-                      onClick={() => console.log("Edit", book)}
+                      onClick={() => navigate(`/admin/edit/${book._id}`)}
                       className="text-blue-500 hover:text-blue-700 mr-3"
                     >
                       <Edit size={18} />

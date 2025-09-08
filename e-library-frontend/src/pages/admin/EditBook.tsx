@@ -77,6 +77,7 @@ export default function EditBook() {
   });
 
   const onSubmit = async (values: EditBookFormValues) => {
+    const toastId = toast.loading("Updating Book....");
     console.log(values);
     try {
       // Use existing image if no new file is uploaded
@@ -102,11 +103,11 @@ export default function EditBook() {
       // Wrap updatedData in bookData as expected by RTK Query
       await updateBook({ id: id!, bookData: updatedData }).unwrap();
 
-      toast.success("Book updated successfully!");
+      toast.success("Book updated successfully!", { id: toastId });
       navigate("/admin/all-books");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update book");
+      toast.error("Failed to update book", { id: toastId });
     }
   };
 

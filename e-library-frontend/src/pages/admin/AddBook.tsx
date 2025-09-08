@@ -73,7 +73,7 @@ const createBookZodSchema = z.object({
 type AddBookFormValues = z.infer<typeof createBookZodSchema>;
 
 export function AddBook() {
-  const [addBook] = useAddBookMutation();
+  const [addBook, { isLoading }] = useAddBookMutation();
 
   // 3️⃣ Initialize react-hook-form
   const form = useForm<AddBookFormValues>({
@@ -90,6 +90,7 @@ export function AddBook() {
   });
 
   const onSubmit = async (values: AddBookFormValues) => {
+    const toastId = toast.loading("Adding Book....");
     console.log(values.imageFile);
     try {
       let imageURL = "";
@@ -108,13 +109,13 @@ export function AddBook() {
 
       const result = await addBook(bookData).unwrap();
       console.log(result);
-      toast.success("Book Added Successfully");
+      toast.success("Book Added Successfully", { id: toastId });
       form.reset();
 
       console.log("Book Data to submit:", bookData);
     } catch (error) {
       console.error("Error uploading image:", error);
-      toast.error("Error uploading image");
+      toast.error("Error uploading image", { id: toastId });
     }
   };
 
@@ -286,7 +287,7 @@ export function AddBook() {
               )}
             />
 
-            <Button type="submit" className="w-full">
+            <Button type="submit" disabled={isLoading} className="w-full">
               Add Book
             </Button>
           </form>

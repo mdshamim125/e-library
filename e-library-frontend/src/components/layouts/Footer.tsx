@@ -1,112 +1,111 @@
 import Logo from "@/assets/icons/Logo";
+import { Link } from "react-router";
 
 export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="container p-6 mx-auto">
         <div className="lg:flex">
+          {/* Brand Info */}
           <div className="w-full -mx-6 lg:w-2/5">
             <div className="px-6">
-          
-                <Logo />
-          
+              <Logo />
 
               <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">
-                Join 31,000+ others and never miss out on new tips, tutorials,
-                and more.
+                E-Library – your digital gateway to knowledge. Borrow, read, and
+                explore books anytime, anywhere.
               </p>
-
-              <div className="flex mt-6 -mx-2"></div>
             </div>
           </div>
 
+          {/* Footer Links */}
           <div className="mt-6 lg:mt-0 lg:flex-1">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {/* About */}
+              {/* Quick Links */}
               <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
-                  About
+                <h3 className="text-gray-700 uppercase dark:text-white font-semibold">
+                  Quick Links
                 </h3>
-                <a
-                  href="#"
+                <Link
+                  to="/"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Company
-                </a>
-                <a
-                  href="#"
+                  Home
+                </Link>
+                <Link
+                  to="/books"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Community
-                </a>
-                <a
-                  href="#"
+                  Books
+                </Link>
+                <Link
+                  to="/about"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Careers
-                </a>
+                  About Us
+                </Link>
+                <Link
+                  to="/contact"
+                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
+                >
+                  Contact
+                </Link>
               </div>
 
-              {/* Blog */}
+              {/* Resources */}
               <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
-                  Blog
+                <h3 className="text-gray-700 uppercase dark:text-white font-semibold">
+                  Resources
                 </h3>
-                <a
-                  href="#"
+                <Link
+                  to="/faq"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Tech
-                </a>
-                <a
-                  href="#"
+                  FAQ
+                </Link>
+                <Link
+                  to="/terms"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Music
-                </a>
-                <a
-                  href="#"
+                  Terms & Conditions
+                </Link>
+                <Link
+                  to="/privacy"
                   className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
                 >
-                  Videos
-                </a>
+                  Privacy Policy
+                </Link>
               </div>
 
-              {/* Products */}
+              {/* Categories */}
               <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
-                  Products
+                <h3 className="text-gray-700 uppercase dark:text-white font-semibold">
+                  Categories
                 </h3>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Mega Cloud
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Aperion UI
-                </a>
-                <a
-                  href="#"
-                  className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline"
-                >
-                  Meraki UI
-                </a>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  Programming
+                </span>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  Computer Science
+                </span>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  DevOps
+                </span>
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  Software Engineering
+                </span>
               </div>
 
               {/* Contact */}
               <div>
-                <h3 className="text-gray-700 uppercase dark:text-white">
+                <h3 className="text-gray-700 uppercase dark:text-white font-semibold">
                   Contact
                 </h3>
-                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                  +1 526 654 8965
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  +880 123 456 789
                 </span>
-                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">
-                  example@email.com
+                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  support@elibrary.com
                 </span>
               </div>
             </div>
@@ -115,9 +114,10 @@ export default function Footer() {
 
         <hr className="h-px my-6 bg-gray-200 border-none dark:bg-gray-700" />
 
+        {/* Copyright */}
         <div>
           <p className="text-center text-gray-500 dark:text-gray-400">
-            © Brand 2020 - All rights reserved
+            © {new Date().getFullYear()} E-Library — All rights reserved.
           </p>
         </div>
       </div>

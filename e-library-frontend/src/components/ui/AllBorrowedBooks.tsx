@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetAllBorrowingHistoryQuery } from "@/redux/features/borrow.api";
+import { useGetAllBorrowingHistoryQuery } from "@/redux/features/borrow/borrow.api";
 import {
   Table,
   TableBody,
@@ -8,11 +8,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { FadeLoader } from "react-spinners";
 
 export default function AllBorrowedBooks() {
   const { data, isLoading, error } = useGetAllBorrowingHistoryQuery(null);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center py-20">
+        <FadeLoader color="blue" />
+      </div>
+    );
   if (error)
     return <p className="text-red-500">Failed to load borrowed books</p>;
 
